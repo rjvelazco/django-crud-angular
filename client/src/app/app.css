@@ -1,0 +1,56 @@
+/* Minimalist layout styles for the app */
+
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+    padding: 32px 40px 40px 40px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ececec;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+}
+
+.nav a {
+  color: #444;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-bottom 0.2s;
+}
+
+.nav a:hover,
+.nav a.active-link {
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+}
+
+.content {
+    margin-top: 24px;
+}
