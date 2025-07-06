@@ -1,4 +1,4 @@
-<p-table [value]="tasks()" [tableStyle]="{ 'min-width': '50rem' }">
+<p-table [value]="tasks()" dataKey="id" [tableStyle]="{ 'min-width': '50rem' }" [loading]="loading()">
     <ng-template #header>
         <tr>
             <th>id</th>
@@ -13,9 +13,26 @@
             <td>{{ task.title }}</td>
             <td>{{ task.description }}</td>
             <td class="button-container">
-                <p-button icon="pi pi-pencil" severity="secondary" size="small" />
-                <p-button icon="pi pi-trash" severity="secondary" size="small" />
+                <a routerLink="/tasks/{{ task.id }}" pButton icon="pi pi-pencil" severity="secondary" size="small"></a>
+                <p-button icon="pi pi-trash" severity="secondary" size="small" (onClick)="deleteTask(task.id)" />
             </td>
         </tr>
     </ng-template>
+    <ng-template #loadingbody let-columns="columns">
+        <tr>
+            <td>
+                <p-skeleton [ngStyle]="{'width': '25%'}" />
+            </td>
+            <td>
+                <p-skeleton [ngStyle]="{'width': '25%'}" />
+            </td>
+            <td>
+                <p-skeleton [ngStyle]="{'width': '25%'}" />
+            </td>
+            <td>
+                <p-skeleton [ngStyle]="{'width': '25%'}" />
+            </td>
+        </tr>
+    </ng-template>
+
 </p-table>
