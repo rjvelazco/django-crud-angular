@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -33,6 +33,7 @@ export class TasksForm {
   protected readonly taskService = inject(TaskService);
 
   protected readonly currentId = signal<number | undefined>(undefined);
+  protected readonly title = computed(() => this.currentId() ? `Edit Task #${this.currentId()}` : 'Create Task');
   protected readonly form = new FormGroup({
     title: new FormControl('', Validators.required),
     description: new FormControl(''),
