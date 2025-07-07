@@ -16,6 +16,10 @@ export class TaskService {
 
     protected readonly httpClient = inject(HttpClient);
 
+    getTaskById(id: number): Observable<Task> {
+        return this.httpClient.get<Task>(`http://localhost:8000/api/v1/tasks/${id}/`);
+    }
+
     getTasks(): Observable<Task[]> {
         return this.httpClient.get<Task[]>('http://localhost:8000/api/v1/tasks');
     }

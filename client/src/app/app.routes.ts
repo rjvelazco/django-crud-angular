@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { TasksListing } from './pages/tasks/listing/listing';
 import { TasksForm } from './pages/tasks/form/form';
+import { editTaskGuard } from './guards/edit-task.guard';
 
 export const routes: Routes = [
     {
@@ -16,7 +17,8 @@ export const routes: Routes = [
             },
             {
                 path: 'edit/:id',
-                component: TasksForm
+                component: TasksForm,
+                canActivate: [editTaskGuard]
             }
         ]
     },
