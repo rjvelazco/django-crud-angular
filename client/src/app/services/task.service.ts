@@ -28,7 +28,7 @@ export class TaskService {
         return this.httpClient.post('http://localhost:8000/api/v1/tasks/', task);
     }
 
-    updateTask(id: number, task: Task): Observable<Object> {
+    updateTask(id: number, task: Omit<Task, 'id'>): Observable<Object> {
         return this.httpClient.put(`http://localhost:8000/api/v1/tasks/${id}/`, task);
     }
 }

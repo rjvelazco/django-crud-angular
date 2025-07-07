@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -31,23 +31,37 @@ import { Task, TaskService } from '@/app/services/task.service';
 export class TasksForm {
   protected readonly router = inject(Router);
   protected readonly taskService = inject(TaskService);
+
+  protected readonly currentId = signal<number | undefined>(undefined);
   protected readonly form = new FormGroup({
     title: new FormControl('', Validators.required),
     description: new FormControl(''),
     done: new FormControl(false),
   });
 
+  constructor() {
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state as { task: Task };
+    if (state?.task) {
+      this.form.patchValue(state.task);
+      this.currentId.set(state.task.id);
+    }
+  }
+
   onSubmit() {
     const task = this.form.value as Omit<Task, 'id'>;
     const isValid = this.form.valid;
+    const id = this.currentId();
 
     if (!isValid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    this.taskService.createTask(task).subscribe((data) => {
-      this.router.navigate(['/tasks']);
-    });
+    const request = id
+      ? this.taskService.updateTask(id, task)
+      : this.taskService.createTask(task);
+
+    request.subscribe(() => this.router.navigate(['/tasks']));
   }
 }
