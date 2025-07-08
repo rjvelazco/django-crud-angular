@@ -1,6 +1,5 @@
 /* Minimalist layout styles for the app */
 
-
 .app-container {
   max-width: 900px;
   margin: 40px auto;
@@ -42,7 +41,9 @@
   font-size: 1rem;
   padding: 4px 0;
   border-bottom: 2px solid transparent;
-  transition: color 0.2s, border-bottom 0.2s;
+  transition:
+    color 0.2s,
+    border-bottom 0.2s;
 }
 
 .app-header__nav a:hover,

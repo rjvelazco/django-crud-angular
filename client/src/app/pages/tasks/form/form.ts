@@ -1,10 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { InputTextModule } from 'primeng/inputtext';
@@ -17,13 +12,7 @@ import { Task, TaskService } from '@/app/services/task.service';
 @Component({
   selector: 'app-tasks-form',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    InputTextModule,
-    TextareaModule,
-    ButtonModule,
-    CheckboxModule,
-  ],
+  imports: [ReactiveFormsModule, InputTextModule, TextareaModule, ButtonModule, CheckboxModule],
   providers: [TaskService],
   templateUrl: './form.html',
   styleUrl: './form.css',
@@ -33,7 +22,7 @@ export class TasksForm {
   protected readonly taskService = inject(TaskService);
 
   protected readonly currentId = signal<number | undefined>(undefined);
-  protected readonly title = computed(() => this.currentId() ? `Edit Task #${this.currentId()}` : 'Create Task');
+  protected readonly title = computed(() => (this.currentId() ? `Edit Task #${this.currentId()}` : 'Create Task'));
   protected readonly form = new FormGroup({
     title: new FormControl('', Validators.required),
     description: new FormControl(''),
@@ -59,9 +48,7 @@ export class TasksForm {
       return;
     }
 
-    const request = id
-      ? this.taskService.updateTask(id, task)
-      : this.taskService.createTask(task);
+    const request = id ? this.taskService.updateTask(id, task) : this.taskService.createTask(task);
 
     request.subscribe(() => this.router.navigate(['/tasks']));
   }

@@ -22,18 +22,18 @@ export class TasksListing implements OnInit {
   protected readonly tasks = signal<Task[]>([]);
 
   ngOnInit() {
-    this.taskService.getTasks().subscribe((tasks) => {
+    this.taskService.getTasks().subscribe(tasks => {
       this.tasks.set(tasks);
       this.loading.set(false);
     });
   }
 
   protected deleteTask(id: number) {
-    const confirm = window.confirm('Are you sure you want to delete this task?'); 
+    const confirm = window.confirm('Are you sure you want to delete this task?');
     if (confirm) {
       this.taskService.deleteTask(id).subscribe(() => {
-        this.tasks.update((tasks) => tasks.filter((task) => task.id !== id));
+        this.tasks.update(tasks => tasks.filter(task => task.id !== id));
       });
-    };
+    }
   }
 }

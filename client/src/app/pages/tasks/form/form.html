@@ -1,28 +1,31 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-fluid" novalidate>
+  <h3>{{ title() }}</h3>
+  <div class="input-group">
+    <label for="title"
+      >Title
+      <span style="font-size: 0.9em; color: red">*</span>
+    </label>
+    <input id="title" type="text" pInputText formControlName="title" placeholder="Enter task title" />
+    @if (form.get('title')?.touched && form.get('title')?.invalid) {
+    <div class="p-error" style="font-size: 0.9em">Title is required.</div>
+    }
+  </div>
 
-    <h3>{{ title() }}</h3>
-    <div class="input-group">
-        <label for="title">Title
-            <span style="font-size: 0.9em; color: red;">*</span>
-        </label>
-        <input id="title" type="text" pInputText formControlName="title" placeholder="Enter task title" />
-        @if (form.get('title')?.touched && form.get('title')?.invalid) {
-        <div class="p-error" style="font-size: 0.9em;">
-            Title is required.
-        </div>
-        }
-    </div>
+  <div class="input-group">
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      pTextarea
+      formControlName="description"
+      rows="4"
+      placeholder="Enter task description"
+    ></textarea>
+  </div>
 
-    <div class="input-group">
-        <label for="description">Description</label>
-        <textarea id="description" pTextarea formControlName="description" rows="4"
-            placeholder="Enter task description"></textarea>
-    </div>
+  <div class="input-group">
+    <label for="done">Done</label>
+    <p-checkbox formControlName="done" [binary]="true" />
+  </div>
 
-    <div class="input-group">
-        <label for="done">Done</label>
-        <p-checkbox formControlName="done" [binary]="true" />
-    </div>
-
-    <p-button type="submit" severity="secondary" label="Save Task" [disabled]="form.invalid" />
+  <p-button type="submit" severity="secondary" label="Save Task" [disabled]="form.invalid" />
 </form>
