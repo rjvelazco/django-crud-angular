@@ -24,15 +24,15 @@ export class TaskService {
         return this.httpClient.get<Task[]>('http://localhost:8000/api/v1/tasks');
     }
 
-    deleteTask(id: number): Observable<Object> {
-        return this.httpClient.delete(`http://localhost:8000/api/v1/tasks/${id}/`);
+    deleteTask(id: number): Observable<void> {
+        return this.httpClient.delete<void>(`http://localhost:8000/api/v1/tasks/${id}/`);
     }
 
-    createTask(task: Omit<Task, 'id'>): Observable<Object> {
-        return this.httpClient.post('http://localhost:8000/api/v1/tasks/', task);
+    createTask(task: Omit<Task, 'id'>): Observable<Task> {
+        return this.httpClient.post<Task>('http://localhost:8000/api/v1/tasks/', task);
     }
 
-    updateTask(id: number, task: Omit<Task, 'id'>): Observable<Object> {
-        return this.httpClient.put(`http://localhost:8000/api/v1/tasks/${id}/`, task);
+    updateTask(id: number, task: Omit<Task, 'id'>): Observable<Task> {
+        return this.httpClient.put<Task>(`http://localhost:8000/api/v1/tasks/${id}/`, task);
     }
 }

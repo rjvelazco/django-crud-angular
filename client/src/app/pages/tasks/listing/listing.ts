@@ -9,7 +9,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { Task, TaskService } from '@/app/services/task.service';
 
 @Component({
-  selector: 'tasks-listing',
+  selector: 'app-tasks-listing',
   imports: [TableModule, ButtonModule, SkeletonModule, NgStyle, RouterLink],
   providers: [TaskService],
   templateUrl: './listing.html',
@@ -31,7 +31,7 @@ export class TasksListing implements OnInit {
   protected deleteTask(id: number) {
     const confirm = window.confirm('Are you sure you want to delete this task?'); 
     if (confirm) {
-      this.taskService.deleteTask(id).subscribe((data) => {
+      this.taskService.deleteTask(id).subscribe(() => {
         this.tasks.update((tasks) => tasks.filter((task) => task.id !== id));
       });
     };

@@ -15,7 +15,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { Task, TaskService } from '@/app/services/task.service';
 
 @Component({
-  selector: 'tasks-form',
+  selector: 'app-tasks-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,

@@ -13,7 +13,7 @@
             <td>{{ task.title }}</td>
             <td>{{ task.description }}</td>
             <td class="button-container">
-                <a routerLink="/tasks/edit/{{ task.id }}"  [state]="{ task }" pButton icon="pi pi-pencil" severity="secondary" size="small"></a>
+                <p-button routerLink="/tasks/edit/{{ task.id }}"  [state]="{ task }" icon="pi pi-pencil" severity="secondary" size="small" />
                 <p-button icon="pi pi-trash" severity="secondary" size="small" (onClick)="deleteTask(task.id)" />
             </td>
         </tr>

@@ -1,10 +1,9 @@
 import { inject } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivateFn, Router } from "@angular/router";
 import { Task, TaskService } from "../services/task.service";
 import { map, Observable, of } from "rxjs";
 
-
-export const editTaskGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> => {
+export const editTaskGuard: CanActivateFn = (route: ActivatedRouteSnapshot): Observable<boolean> => {
     const router = inject(Router);
     const taskService = inject(TaskService);
 
